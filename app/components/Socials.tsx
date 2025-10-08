@@ -10,12 +10,12 @@ const SocialsList: SocialsListType[] = [
     {
         name: 'GitHub',
         icon: <Github />,
-        href: '',
+        href: 'https://github.com/iyabc',
     },
     {
         name: 'LinkedIn',
         icon: <Linkedin />,
-        href: '',
+        href: 'https://www.linkedin.com/in/julienne-andrea-panes-99456024a',
     },
 ]
 
