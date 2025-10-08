@@ -10,7 +10,7 @@ export default function Home() {
       <aside className="w-full md:w-1/3 lg:w-1/4 md:pb-0 py-6">
         <Sidebar />
       </aside>
-      <main className="flex flex-col flex-1 h-[80vh] px-0 md:px-4 py-2 md:pt-4 pb-6 overflow-auto space-y-8">
+      <main className="flex flex-col flex-1 h-[80vh] px-0 md:px-4 py-2 md:pt-4 pb-6 md:pb-20 overflow-auto space-y-8">
         <About />
         <TechStack />
         <Experience />

@@ -11,7 +11,7 @@ const Links = [
 
 const DesktopMenu = ({ activeHash }: { activeHash: string }) => {
     return (
-        <div className="hidden md:flex flex-col gap-6">
+        <div className="hidden md:flex flex-col gap-6 text-center">
             {Links.map((link) => (
                 <a
                     key={link.name}

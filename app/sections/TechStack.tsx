@@ -54,10 +54,10 @@ const TechStackList: TechStackListType[] = [
 const TechStack = () => {
     return (
         <Section id="TechStack" title="Tech Stack" aria-label="Tech Stack Section" className='flex-1'>
-            <ul className='flex flex-wrap md:space-x-4 md:space-y-4 justify-center items-center w-10/12 mx-auto'>
+            <ul className='flex flex-wrap gap-4 justify-center items-center mx-auto'>
                 {TechStackList.map((tech, index) => (
-                    <li key={index} className='relative flex w-10 h-10 md:w-18 md:h-18 justify-between items-center' >
-                        <Image src={tech.icon} alt={`${tech.name} logo`} className='absolute' fill />
+                    <li key={index} className='relative flex w-8 h-8 md:w-14 md:h-14 justify-between items-center' >
+                        <Image src={tech.icon} alt={`${tech.name} logo`} className='absolute' draggable={false} fill />
                     </li>
                 ))}
             </ul>

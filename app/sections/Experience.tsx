@@ -42,7 +42,7 @@ const experiences = [
 
 const Experience = () => {
     return (
-        <Section id="Experience" title="Experience">
+        <Section id="Experience" title="Experience" aria-label="Experience Section">
             <div className="flex flex-col space-y-8">
                 {experiences.map((exp, idx) => (
                     <div key={idx}>
