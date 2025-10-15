@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import Section from '../ui/Section';
 
@@ -33,6 +32,11 @@ const TechStackList: TechStackListType[] = [
         name: "Tailwind CSS",
         description: "Adept at designing responsive and modern UIs using Tailwind CSS.",
         icon: "/logos/tailwindcss.svg"
+    },
+    {
+        name: "React Native",
+        description: "Experienced in building cross-platform mobile applications with React Native, ensuring native performance and seamless user experiences on both iOS and Android.",
+        icon: "/logos/reactnative.svg"
     },
     {
         name: "PostgreSQL",
@@ -76,14 +80,14 @@ const TechStack = () => {
         <Section id="TechStack" title="Tech Stack" aria-label="Tech Stack Section" className='flex-1'>
             <ul className='flex flex-wrap gap-4 justify-center items-center mx-auto'>
                 {TechStackList.map((tech, index) => (
-                    <li key={index} className='relative group flex w-8 h-8 md:w-14 md:h-14 justify-between items-center' >
+                    <li key={index} tabIndex={0} className='relative group flex w-8 h-8 md:w-14 md:h-14 justify-between items-center' >
                         <Image src={tech.icon} alt={`${tech.name} logo`} className='absolute' draggable={false} fill />
                         <div
                             className="absolute bottom-full left-1/2 
                        transform -translate-x-1/2 mb-2 
                        w-max px-2 py-1 text-sm text-white
                        bg-background rounded shadow-lg 
-                       opacity-0 group-hover:opacity-100">
+                       opacity-0 group-hover:opacity-100 group-focus:opacity-100">
                             <strong>{tech.name}</strong>
                         </div>
                     </li>

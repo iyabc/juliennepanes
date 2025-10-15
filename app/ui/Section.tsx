@@ -8,7 +8,7 @@ const Section: React.FC<{ id?: string; title?: string; 'aria-label'?: string; ch
     className = '',
 }) => {
     return (
-        <section id={id} aria-label={ariaLabel} className={`w-full h-fit card-glass ${className}`}>
+        <section id={id} aria-label={ariaLabel} className={`w-full card-glass ${className}`}>
             {title ? <h3 className="font-bold text-2xl mb-8">{title}</h3> : null}
             {children ?? <span>Section</span>}
         </section>

@@ -40,6 +40,13 @@ const projects: Project[] = [
         img: '/projects/blog.png',
         tech: ['angular']
     },
+    {
+        title: "SmartCampus",
+        description: "View availability and book campus facilities",
+        link: "https://github.com/iyabc/smartcampus-frontend?tab=readme-ov-file#demo-video",
+        img: '/projects/smartcampus.png',
+        tech: ['reactnative']
+    },
 ]
 
 const ProjectCard = ({
@@ -92,7 +99,7 @@ const ProjectCard = ({
 
 const Projects = () => {
     return (
-        <Section id="Projects" title="Projects" aria-label="Projects Section" className='flex-1 h-full'>
+        <Section id="Projects" title="Projects" aria-label="Projects Section" className='flex-1 h-fit'>
             <div className="flex flex-wrap space-y-8 w-full md:gap-4 md:space-y-0 justify-center">
                 {projects.map((exp, index) => (
                     <ProjectCard key={index} {...exp} />
