@@ -1,4 +1,5 @@
-import { Github, Linkedin } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
+import Link from "next/link"
 
 type SocialsListType = {
     name: string,
@@ -17,6 +18,11 @@ const SocialsList: SocialsListType[] = [
         icon: <Linkedin />,
         href: 'https://www.linkedin.com/in/julienne-andrea-panes-99456024a',
     },
+    {
+        name: 'Mail',
+        icon: <Mail />,
+        href: 'mailto:juliennepanes@gmail.com?subject=Software%20Developer',
+    },
 ]
 
 const Socials = () => {
@@ -25,13 +31,20 @@ const Socials = () => {
             {
                 SocialsList.map((social) => (
                     <li key={social.name}>
-                        <a href={social.href} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                        <Link
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block transform transition duration-300 ease-in-out
+                            hover:-translate-y-1 hover:shadow-[var(--button-shadow-hover)]
+                            hover:cursor-pointer"
+                        >
                             {social.icon ? social.icon : social.name}
-                        </a>
+                        </Link>
                     </li>
                 ))
             }
-        </ul>
+        </ul >
     )
 }
 
