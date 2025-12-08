@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     siteName: "Julienne Panes Portfolio",
     locale: "en_US",
     type: "website",
+    images: [{ url: "https://github.com/iyabc/juliennepanes/blob/main/public/Preview.png" }]
   },
 };
 
