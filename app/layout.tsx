@@ -9,8 +9,36 @@ const font = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Julienne Panes",
+  title: "Julienne Panes Portfolio",
   description: "Portfolio of Julienne Panes - Software Developer",
+  applicationName: "Julienne Panes Portfolio",
+  authors: [{ name: "Julienne Panes", url: "https://juliennepanes.vercel.app/" }],
+  keywords: [
+    "Julienne Panes",
+    "Portfolio",
+    "Software Developer",
+    "Web Developer",
+    "Full-Stack Developer",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "CSS",
+    "HTML",
+    "Tech Stack",
+    "Projects",
+    "Experience",
+    "About Me",
+  ],
+  openGraph: {
+    title: "Julienne Panes",
+    description: "Portfolio of Julienne Panes - Software Developer",
+    url: "https://juliennepanes.vercel.app/",
+    siteName: "Julienne Panes Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
