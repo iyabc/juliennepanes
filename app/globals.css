@@ -51,14 +51,16 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
-  background: var(--border)
+  display: none;
+  /* width: 2px;
+  background: var(--border) */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #808080;
+  display: none;
+  /* background-color: #808080;
   border-radius: 10px;
-  border: 1px solid transparent;
+  border: 1px solid transparent; */
 }
 
 .card-glass {
