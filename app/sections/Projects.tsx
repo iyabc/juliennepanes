@@ -1,4 +1,3 @@
-import React from 'react'
 import Section from '../ui/Section'
 import Image from 'next/image';
 import Link from 'next/link';
@@ -62,15 +61,14 @@ const ProjectCard = ({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="group bg-background relative block overflow-hidden rounded-lg shadow h-34 w-full md:h-48 md:w-96 hover:translate-y-[-2px] hover:shadow-[var(--button-shadow-hover)]
+        className="group bg-background relative block overflow-hidden rounded-lg shadow h-32 w-full md:h-48 md:w-96 hover:translate-y-[-2px] hover:shadow-[var(--button-shadow-hover)]
           hover:cursor-pointer transition-transform"
     >
-        <Image
+        <img
             src={img}
             alt={description}
-            fill
             draggable={false}
-            className="object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover object-top"
         />
 
         <div className="absolute inset-0 bg-background opacity-75 transition-opacity duration-500 group-hover:opacity-55" />
