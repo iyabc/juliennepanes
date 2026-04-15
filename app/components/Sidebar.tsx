@@ -77,7 +77,7 @@ const ResumeButton = () => {
 
 const Sidebar = () => {
   return (
-    <div className="block md:flex md:flex-col space-y-10 md:space-y-0 justify-between h-full card-glass">
+    <div className="block md:flex md:flex-col space-y-10 md:space-y-0 justify-between md:h-[83vh] card-glass">
       <div className="flex flex-col gap-4">
         <h1 className="font-bold text-3xl">Julienne Panes</h1>
         <h2 className="font-medium text-xl">Software Developer</h2>
