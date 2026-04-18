@@ -1,6 +1,11 @@
+'use client';
+
 import Section from '../ui/Section';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
+import { useOnInView } from 'react-intersection-observer';
+import { useActiveSection } from '../contexts/ActiveSectionContext';
 
 interface Project {
   title: string;
@@ -48,53 +53,98 @@ const projects: Project[] = [
   },
 ];
 
-const ProjectCard = ({ title, description, link, img, tech }: Project) => (
-  <Link
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group bg-background relative block overflow-hidden rounded-lg shadow h-32 w-full md:h-48 md:w-96 hover:translate-y-[-2px] hover:shadow-[var(--button-shadow-hover)]
-          hover:cursor-pointer transition-transform"
-  >
-    <div className="relative w-full h-full">
-      <Image
-        src={img}
-        alt={description}
-        fill
-        draggable={false}
-        className="object-cover object-top"
-        sizes="100vw"
-        priority={false}
-      />
-    </div>
+const ProjectCard = ({ title, description, link, img, tech }: Project) => {
+  const cardRef = useRef<HTMLAnchorElement>(null);
 
-    <div className="absolute inset-0 bg-background opacity-75 transition-opacity duration-500 group-hover:opacity-55" />
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateX = ((y - cy) / cy) * -5;
+    const rotateY = ((x - cx) / cx) * 5;
+    el.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+  };
 
-    <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-10">
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="text-sm font-medium text-gray-200">{description}</p>
-      <div className="flex flex-row space-x-1">
-        {tech.map((t: string, index: number) => (
-          <Image
-            key={t ?? index}
-            src={`/logos/${t}.svg`}
-            alt={`${t} logo`}
-            width={24}
-            height={24}
-            draggable={false}
-          />
-        ))}
+  const handleMouseLeave = () => {
+    if (cardRef.current) {
+      cardRef.current.style.transform =
+        'perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    }
+  };
+
+  return (
+    <Link
+      ref={cardRef}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group relative block overflow-hidden rounded-xl h-36 w-full md:h-48 md:w-[calc(50%-8px)] xl:w-[calc(33.33%-12px)] border border-white/[0.06] hover:border-[var(--accent-hover)]/30 hover:shadow-[var(--button-shadow-hover)] cursor-pointer"
+      style={{
+        transition:
+          'transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease',
+        transformStyle: 'preserve-3d',
+      }}
+    >
+      <div className="relative w-full h-full">
+        <Image
+          src={img}
+          alt={description}
+          fill
+          draggable={false}
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 100vw, 400px"
+          priority={false}
+        />
       </div>
-    </div>
-  </Link>
-);
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-[#050510] opacity-70 group-hover:opacity-50 transition-opacity duration-400" />
+
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+        <h3 className="text-sm font-bold text-white">{title}</h3>
+        <p className="text-xs text-gray-300/70 mb-2 leading-snug">
+          {description}
+        </p>
+        <div className="flex flex-row gap-1.5">
+          {tech.map((t) => (
+            <Image
+              key={t}
+              src={`/logos/${t}.svg`}
+              alt={`${t} logo`}
+              width={16}
+              height={16}
+              draggable={false}
+              className="opacity-70 group-hover:opacity-100 transition-opacity"
+            />
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const Projects = () => {
+  const { setActiveSection } = useActiveSection();
+
+  const inViewRef = useOnInView(
+    (inView) => {
+      if (inView) setActiveSection('#Projects');
+    },
+    { rootMargin: '-40% 0px -40% 0px', threshold: 0.2, triggerOnce: false },
+  );
+
   return (
-    <Section id="Projects" title="Projects" aria-label="Projects Section" className="flex-1 h-fit">
-      <div className="flex flex-wrap space-y-8 w-full md:gap-4 md:space-y-0 justify-center">
-        {projects.map((project: Project, index: number) => (
-          <ProjectCard key={project.title ?? index} {...project} />
+    <Section title="Projects" aria-label="Projects Section" ref={inViewRef}>
+      <div className="flex flex-wrap gap-4 w-full justify-start">
+        {projects.map((project) => (
+          <ProjectCard key={project.title} {...project} />
         ))}
       </div>
     </Section>

@@ -1,20 +1,28 @@
-import React from 'react';
-import { FadeIn } from './FadeIn';
-
 const Section: React.FC<{
-  id?: string;
   title?: string;
   'aria-label'?: string;
   children?: React.ReactNode;
   className?: string;
-}> = ({ id, title, children, 'aria-label': ariaLabel, className = '' }) => {
+  ref?: React.Ref<HTMLDivElement>;
+}> = ({ title, children, 'aria-label': ariaLabel, className = '', ref }) => {
   return (
-    <FadeIn>
-      <section id={id} aria-label={ariaLabel} className={`w-full card-glass ${className}`}>
-        {title ? <h2 className="font-bold text-2xl mb-8">{title}</h2> : null}
-        {children ?? <span>Section</span>}
-      </section>
-    </FadeIn>
+    <section
+      id={title}
+      aria-label={ariaLabel}
+      className={`w-full p-8 ${className}`}
+      ref={ref}
+    >
+      {title ? (
+        <div className="flex items-center gap-3 mb-7">
+          <span className="block w-[1px] h-6 rounded-full flex-shrink-0 bg-white/20" />
+          <h2 className="text-base font-bold uppercase tracking-[0.18em] text-foreground/80">
+            {title}
+          </h2>
+          <div className="h-px flex-1 bg-white/10" />
+        </div>
+      ) : null}
+      {children ?? <span>Section</span>}
+    </section>
   );
 };
 

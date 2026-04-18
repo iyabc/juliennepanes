@@ -1,18 +1,29 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk, Space_Mono } from 'next/font/google';
+import CustomCursor from './components/CustomCursor';
+import { ActiveSectionProvider } from './contexts/ActiveSectionContext';
 
-const font = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
+  variable: '--font-geist-sans',
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
+});
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
 });
 
 export const metadata: Metadata = {
   title: 'Julienne Panes Portfolio',
   description: 'Portfolio of Julienne Panes - Software Developer',
   applicationName: 'Julienne Panes Portfolio',
-  authors: [{ name: 'Julienne Panes', url: 'https://juliennepanes.vercel.app/' }],
+  authors: [
+    { name: 'Julienne Panes', url: 'https://juliennepanes.vercel.app/' },
+  ],
   keywords: [
     'Julienne Panes',
     'Portfolio',
@@ -49,7 +60,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.variable} antialiased`}>{children}</body>
+      <body
+        className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased`}
+      >
+        <CustomCursor />
+        <ActiveSectionProvider>{children}</ActiveSectionProvider>
+      </body>
     </html>
   );
 }
