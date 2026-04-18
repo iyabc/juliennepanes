@@ -135,12 +135,12 @@ const Experience = () => {
   const { setActiveSection } = useActiveSection();
 
   const inViewRef = useOnInView(
-    (inView, entry) => {
+    (inView) => {
       if (inView) {
         setActiveSection('#Experience');
       }
     },
-    { rootMargin: '-40% 0px -40% 0px', threshold: 0.3, triggerOnce: false },
+    { rootMargin: '-40% 0px -40% 0px', threshold: 0, triggerOnce: false },
   );
 
   return (
