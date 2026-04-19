@@ -7,7 +7,7 @@ const Section: React.FC<{
 }> = ({ title, children, 'aria-label': ariaLabel, className = '', ref }) => {
   return (
     <section
-      id={title}
+      id={title?.replace(/\s+/g, '')}
       aria-label={ariaLabel}
       className={`w-full p-8 ${className}`}
       ref={ref}
