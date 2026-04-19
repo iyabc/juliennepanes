@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import Section from '../ui/Section';
-import { useActiveSection } from '../contexts/ActiveSectionContext';
-import { useOnInView } from 'react-intersection-observer';
 
 type TechStackItemType = {
   name: string;
@@ -40,17 +38,8 @@ const categories: { label: string; items: TechStackItemType[] }[] = [
 ];
 
 const TechStack = () => {
-  const { setActiveSection } = useActiveSection();
-
-  const inViewRef = useOnInView(
-    (inView) => {
-      if (inView) setActiveSection('#TechStack');
-    },
-    { rootMargin: '-40% 0px -40% 0px', threshold: 0.5, triggerOnce: false },
-  );
-
   return (
-    <Section title="Tech Stack" aria-label="Tech Stack Section" ref={inViewRef}>
+    <Section title="Tech Stack" aria-label="Tech Stack Section">
       <div className="flex flex-col gap-6">
         {categories.map((cat) => (
           <div key={cat.label}>
@@ -61,14 +50,14 @@ const TechStack = () => {
               {cat.items.map((tech) => (
                 <div
                   key={tech.name}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.14] transition-all duration-200 cursor-default"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.14] transition-all duration-200"
                 >
                   <div className="relative w-4 h-4 flex-shrink-0">
                     <Image
                       src={tech.icon}
                       alt={`${tech.name} logo`}
                       fill
-                      className="object-contain"
+                      className="object-contain drop-shadow-[0_1px_7px_rgba(255,255,255,0.4)]"
                       draggable={false}
                     />
                   </div>

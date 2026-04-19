@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 import Section from '../ui/Section';
 import { FaChevronDown } from 'react-icons/fa6';
-import { useActiveSection } from '../contexts/ActiveSectionContext';
-import { useOnInView } from 'react-intersection-observer';
 
 type ExperienceType = {
   title: string;
@@ -132,19 +130,8 @@ const ExperienceItem = ({
 };
 
 const Experience = () => {
-  const { setActiveSection } = useActiveSection();
-
-  const inViewRef = useOnInView(
-    (inView) => {
-      if (inView) {
-        setActiveSection('#Experience');
-      }
-    },
-    { rootMargin: '-40% 0px -40% 0px', threshold: 0, triggerOnce: false },
-  );
-
   return (
-    <Section title="Experience" aria-label="Experience Section" ref={inViewRef}>
+    <Section title="Experience" aria-label="Experience Section">
       <div className="relative flex flex-col">
         {experiences.map((exp, index) => (
           <ExperienceItem

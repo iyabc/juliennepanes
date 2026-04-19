@@ -37,7 +37,7 @@ const DesktopMenu = ({ activeSection }: { activeSection: string }) => {
   );
 };
 
-const MobileMenu = ({ activeSection }: { activeSection: string }) => {
+const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -55,9 +55,8 @@ const MobileMenu = ({ activeSection }: { activeSection: string }) => {
       </button>
 
       {isOpen && (
-        <div className="fixed right-5 top-16 z-50 flex flex-col gap-1 p-2 rounded-xl bg-[#07071a]/95 backdrop-blur-md shadow-lg border border-[var(--border)] min-w-[160px]">
+        <div className="fixed right-5 top-16 z-50 flex flex-col gap-1 p-2 rounded-xl bg-black/20 backdrop-blur-md shadow-lg border border-[var(--border)] min-w-[160px]">
           {Links.map((link) => {
-            const isActive = activeSection === link.href;
             return (
               <a
                 key={link.name}
@@ -67,10 +66,6 @@ const MobileMenu = ({ activeSection }: { activeSection: string }) => {
                   'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all'
                 }
               >
-                <span
-                  className={`block w-[2px] h-4 rounded-full flex-shrink-0 transition-all duration-300
-                    ${isActive ? 'bg-white/20' : 'bg-transparent'}`}
-                />
                 {link.name}
               </a>
             );
@@ -87,7 +82,7 @@ const Navigation = () => {
   return (
     <>
       <DesktopMenu activeSection={activeSection} />
-      <MobileMenu activeSection={activeSection} />
+      <MobileMenu />
     </>
   );
 };

@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import Details from './components/Details';
 import Sidebar from './components/Sidebar';
+import { useActiveSection } from './contexts/ActiveSectionContext';
 
 export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
+  const { setScrollContainer } = useActiveSection();
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-mono selection:bg-white/20 selection:text-white md:cursor-none">
+    <div className="min-h-screen bg-[#050505] text-white font-mono selection:bg-white/20 selection:text-white">
       {/* Subtle grid bg */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
@@ -23,9 +25,12 @@ export default function Home() {
           className={`relative z-[1] flex flex-col md:flex-row md:h-[80vh] md:w-[80vw] md:overflow-hidden mx-auto rounded-lg border border-white/[0.06] bg-black/30 transition-transform duration-300 ${!resumeOpen ? 'hover:scale-[1.02] hover:shadow-[var(--button-shadow-hover)]' : ''}`}
         >
           <aside className="w-full md:w-56 lg:w-64 xl:w-72 md:flex-shrink-0 h-full absolute md:top-0 sidebar-bg">
-            <Sidebar resumeOpen={resumeOpen} onResumeOpenChange={setResumeOpen} />
+            <Sidebar
+              resumeOpen={resumeOpen}
+              onResumeOpenChange={setResumeOpen}
+            />
           </aside>
-          <main className="flex-1 h-full md:overflow-auto">
+          <main ref={setScrollContainer} className="flex-1 h-full md:overflow-auto">
             <Details />
           </main>
         </div>
