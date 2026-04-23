@@ -13,12 +13,13 @@ type ExperienceType = {
 
 const experiences: ExperienceType[] = [
   {
-    title: 'Full-stack Developer',
+    title: 'Full Stack Developer',
     company: 'CP Health Innovations, Inc.',
     period: 'Jan 2026 – Apr 2026',
     details: [
-      'Develop and maintain full-stack features with a focus on performance, scalability, and usability',
-      'Collaborate with team to iterate on user feedback, resolve issues, and implement secure, standards-compliant solutions.',
+      'Developed and maintained features for CareGo (EMR) using Laravel and React, supporting clinic and patient workflows',
+      'Improved application performance and strengthened security for handling sensitive healthcare data',
+      'Collaborated with team to resolve issues and enhance usability based on real-world user needs',
     ],
   },
   {

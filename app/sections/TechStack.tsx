@@ -15,6 +15,7 @@ const categories: { label: string; items: TechStackItemType[] }[] = [
       { name: 'Next.js', icon: '/logos/nextjs.svg' },
       { name: 'Tailwind CSS', icon: '/logos/tailwindcss.svg' },
       { name: 'React Native', icon: '/logos/reactnative.svg' },
+      { name: 'Laravel', icon: '/logos/laravel.svg' },
     ],
   },
   {
