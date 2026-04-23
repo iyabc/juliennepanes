@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Space_Grotesk, Space_Mono } from 'next/font/google';
-import CustomCursor from './components/CustomCursor';
+import ClientCursor from './components/ClientCursor';
 import { ActiveSectionProvider } from './contexts/ActiveSectionContext';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-geist-sans',
   weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 });
 
 const spaceMono = Space_Mono({
@@ -15,14 +16,20 @@ const spaceMono = Space_Mono({
   variable: '--font-geist-mono',
   weight: ['400', '700'],
   style: ['normal', 'italic'],
+  display: 'swap',
 });
 
+const title = 'Julienne Panes | Full-Stack Software Developer Portfolio';
+const description =
+  'Julienne Panes is a Full-Stack Software Developer specializing in Next.js and Java. Explore her projects, tech stack, and professional experience.';
+
 export const metadata: Metadata = {
-  title: 'Julienne Panes Portfolio',
-  description: 'Portfolio of Julienne Panes - Software Developer',
+  metadataBase: new URL('https://juliennepanes.pages.dev'),
+  title: title,
+  description: description,
   applicationName: 'Julienne Panes Portfolio',
   authors: [
-    { name: 'Julienne Panes', url: 'https://juliennepanes.vercel.app/' },
+    { name: 'Julienne Panes', url: 'https://juliennepanes.pages.dev/' },
   ],
   keywords: [
     'Julienne Panes',
@@ -43,13 +50,26 @@ export const metadata: Metadata = {
     'About Me',
   ],
   openGraph: {
-    title: 'Julienne Panes',
-    description: 'Portfolio of Julienne Panes - Software Developer',
+    title: title,
+    description: description,
     url: 'https://juliennepanes.pages.dev/',
     siteName: 'Julienne Panes Portfolio',
     locale: 'en_US',
     type: 'website',
-    images: [{ url: 'https://https://juliennepanes.pages.dev/Preview.png' }],
+    images: [
+      {
+        url: '/Preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Julienne Panes Portfolio Preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: description,
+    images: ['/Preview.png'],
   },
 };
 
@@ -63,7 +83,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${spaceMono.variable} antialiased`}
       >
-        <CustomCursor />
+        <ClientCursor />
         <ActiveSectionProvider>{children}</ActiveSectionProvider>
       </body>
     </html>
