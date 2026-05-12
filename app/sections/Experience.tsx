@@ -15,7 +15,7 @@ const experiences: ExperienceType[] = [
   {
     title: 'Full Stack Developer',
     company: 'CP Health Innovations, Inc.',
-    period: 'Jan 2026 – Apr 2026',
+    period: 'Jan 2026 – May 2026',
     details: [
       'Developed and maintained features for CareGo (EMR) using Laravel and React, supporting clinic and patient workflows',
       'Improved application performance and strengthened security for handling sensitive healthcare data',
